@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnNormalUsage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="normal usage\n一般用法"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnInterfaceUsage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="interface method dispatch usage\n接口方法线程调度用法"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnAliasUsage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="using alias usage\n使用别名线程调度用法"
+        android:textAllCaps="false" />
+
+</LinearLayout>

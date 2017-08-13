@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context="com.yn.threaddispatcherdemo.InterfaceMethodUsageActivity">
+
+
+    <Button
+        android:id="@+id/testNormalDispatchers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test Normal Dispatchers"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/testBackgroudnAsync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test difference between background and async\n测试background和async的区别"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>

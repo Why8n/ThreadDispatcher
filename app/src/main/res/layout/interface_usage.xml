@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yn.threaddispatcherdemo.InterfaceMethodUsageActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/main_In_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="main in main thread\n主线程调用接口注解ThreadMode.MAIN方法"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/main_In_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="main in background thread\n子线程调用接口注解ThreadMode.MAIN方法"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/background_In_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="background in main thread\n主线程调用接口注解ThreadMode.BACKGROUND方法"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/background_In_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="background in background thread\n子线程调用接口注解ThreadMode.BACKGROUND方法"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/async_In_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="async in main thread\n主线程调用接口注解ThreadMode.ASYNC方法"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/async_In_async"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="async in async thread\n子线程调用接口注解ThreadMode.ASYNC方法"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/post_In_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="post in main thread\n主线程调用接口注解ThreadMode.POST方法"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/post_In_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="post in background thread\n子线程调用接口注解ThreadMode.POST方法"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

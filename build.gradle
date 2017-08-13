@@ -1,0 +1,37 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+//        maven {
+//            url "http://dl.bintray.com/why8n/maven"
+//        }
+//        maven { url 'D:\\Android\\android-sdk\\extras\\m2repository' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.novoda:bintray-release:0.5.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+ext {
+    userOrg = 'why8n'
+    groupId = 'com.whyn'
+    publishVersion = '1.0.0'
+    website = 'https://github.com/Why8n/ThreadDispatcher'
+    licences = ['Apache-2.0']
+}

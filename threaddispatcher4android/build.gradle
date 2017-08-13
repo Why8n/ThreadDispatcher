@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'com.novoda.bintray-release'
+//
+//publish {
+//    userOrg = rootProject.ext.userOrg      //bintray注册的用户名
+//    groupId = rootProject.ext.groupId         //compile引用时的第1部分groupId
+//    artifactId = 'threaddispatcher4android'     //compile引用时的第2部分项目名
+//    publishVersion = rootProject.ext.publishVersion    //compile引用时的第3部分版本号
+//    desc = 'offer a main thread dispatcher in Android Platform for ThreadDispatcher'
+//    website = rootProject.ext.website
+//    uploadName = 'com.yn:threaddispatcher-threaddispatcher4android'
+//}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+}

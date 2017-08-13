@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnPublic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="run public method"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnProtectedMethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="run protected method"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnPackageMethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="run package method"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnPrivateMethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="run private method"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnRunStaticPublicMethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="run static public method"
+        android:textAllCaps="false" />
+    <Button
+        android:id="@+id/btnRunStaticPrivateMethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="run static private method"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnCalcPublicCost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="calc public method cost"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnCalcPrivateCalc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="calc private method cost"
+        android:textAllCaps="false" />
+</LinearLayout>
