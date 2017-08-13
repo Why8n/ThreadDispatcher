@@ -1,15 +1,15 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.novoda.bintray-release'
-//
-//publish {
-//    userOrg = rootProject.ext.userOrg      //bintray注册的用户名
-//    groupId = rootProject.ext.groupId         //compile引用时的第1部分groupId
-//    artifactId = 'threaddispatcher4android'     //compile引用时的第2部分项目名
-//    publishVersion = rootProject.ext.publishVersion    //compile引用时的第3部分版本号
-//    desc = 'offer a main thread dispatcher in Android Platform for ThreadDispatcher'
-//    website = rootProject.ext.website
-//    uploadName = 'com.yn:threaddispatcher-threaddispatcher4android'
-//}
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = rootProject.ext.userOrg      //bintray注册的用户名
+    groupId = rootProject.ext.groupId         //compile引用时的第1部分groupId
+    artifactId = 'threaddispatcher4android'     //compile引用时的第2部分项目名
+    publishVersion = rootProject.ext.publishVersion    //compile引用时的第3部分版本号
+    desc = 'offer a main thread dispatcher in Android Platform for ThreadDispatcher'
+    website = rootProject.ext.website
+    uploadName = 'com.yn:threaddispatcher-threaddispatcher4android'
+}
 
 android {
     compileSdkVersion 25

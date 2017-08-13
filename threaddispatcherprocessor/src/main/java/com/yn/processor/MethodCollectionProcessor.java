@@ -40,8 +40,6 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeKind;
 import javax.tools.Diagnostic;
 
-import static jdk.nashorn.internal.runtime.JSType.isPrimitive;
-
 /**
  * Created by Whyn on 2017/8/9.
  */
@@ -141,7 +139,12 @@ public class MethodCollectionProcessor extends AbstractProcessor {
                 .addMethod(brewMethod_getRawType())
                 .addMethod(brewMethod_obj2class())
                 .addMethod(brewMethod_getPrimitiveType())
-                .addMethod(brewMethod_isGenericType());
+                .addMethod(brewMethod_isGenericType())
+                .addMethod(brewMethod_getNormalType())
+                .addMethod(brewMethod_isPrimitiveArrayType())
+                .addMethod(brewMethod_getPrimitiveArrayTypeStringDesc())
+                .addMethod(brewMethod_primitiveTypeStringDesc())
+                .addMethod(brewMethod_getNormalTypeArrayStringDesc());
         CodeBlock.Builder staticCodeBlockBuilder = CodeBlock.builder();
         Switch annotation = null;
         for (ExecutableElement element : mMethodCollections) {
@@ -177,6 +180,176 @@ public class MethodCollectionProcessor extends AbstractProcessor {
         }
         builder.addStaticBlock(staticCodeBlockBuilder.build());
         return builder.build();
+    }
+
+    //    private String primitiveTypeStringDesc(final String rawType) {
+//        switch (rawType) {
+//            case "boolean":
+//                return "Z";
+//            case "byte":
+//                return "B";
+//            case "char":
+//                return "C";
+//            case "short":
+//                return "S";
+//            case "int":
+//                return "I";
+//            case "long":
+//                return "J";
+//            case "float":
+//                return "F";
+//            case "double":
+//                return "D";
+//        }
+//        return "";
+//    }
+    private MethodSpec brewMethod_primitiveTypeStringDesc() {
+        return MethodSpec.methodBuilder("primitiveTypeStringDesc")
+                .addModifiers(Modifier.PRIVATE)
+                .returns(ClassName.get(String.class))
+                .addParameter(ClassName.get(String.class), "rawType", Modifier.FINAL)
+                .beginControlFlow("switch (rawType)")
+                .beginControlFlow("case $S:", boolean.class)
+                .addStatement("return $S", "Z")
+                .endControlFlow()
+                .beginControlFlow("case $S:", byte.class)
+                .addStatement("return $S", "B")
+                .endControlFlow()
+                .beginControlFlow("case $S:", char.class)
+                .addStatement("return $S", "C")
+                .endControlFlow()
+                .beginControlFlow("case $S:", short.class)
+                .addStatement("return $S", "S")
+                .endControlFlow()
+                .beginControlFlow("case $S:", int.class)
+                .addStatement("return $S", "I")
+                .endControlFlow()
+                .beginControlFlow("case $S:", long.class)
+                .addStatement("return $S", "J")
+                .endControlFlow()
+                .beginControlFlow("case $S:", float.class)
+                .addStatement("return $S", "F")
+                .endControlFlow()
+                .beginControlFlow("case $S:", double.class)
+                .addStatement("return $S", "D")
+                .endControlFlow()
+                .endControlFlow()
+                .addStatement("return $S","")
+                .build();
+    }
+
+
+    //    private String getNormalTypeStringDesc(String type) {
+//        Pattern pattern = Pattern.compile("(\\S+)(\\[\\])\\2+");
+//        Matcher matcher = pattern.matcher(type);
+//        String rawType = null;
+//        StringBuilder prefix = new StringBuilder();
+//        while (matcher.find()) {
+//            rawType = matcher.group(1);
+//            prefix.append("[");
+//        }
+//        return prefix.append("L").append(rawType).append(";").toString();
+//    }
+    private MethodSpec brewMethod_getNormalTypeArrayStringDesc() {
+        return MethodSpec.methodBuilder("getNormalTypeArrayStringDesc")
+                .addModifiers(Modifier.PRIVATE)
+                .returns(ClassName.get(String.class))
+                .addParameter(ClassName.get(String.class), "type", Modifier.FINAL)
+                .addStatement("$T pattern = Pattern.compile(\"(\\\\S+)(\\\\[\\\\])\\\\2+\")",
+                        ClassName.get(Pattern.class))
+                .addStatement("$T matcher = pattern.matcher(type)", ClassName.get(Matcher.class))
+                .addStatement("String rawType = null")
+                .addStatement("$T prefix = new StringBuilder()", ClassName.get(StringBuilder.class))
+                .beginControlFlow("while (matcher.find())")
+                .addStatement("rawType = matcher.group(1)")
+                .addStatement("prefix.append(\"[\")")
+                .endControlFlow()
+                .addStatement("return prefix.append(\"L\").append(rawType).append(\";\").toString()")
+                .build();
+    }
+
+    //    private String getPrimitiveArrayTypeStringDesc(String type) {
+//        Pattern pattern = Pattern.compile("(\\S+)(\\[\\])\\2+");
+//        Matcher matcher = pattern.matcher(type);
+//        String rawType = null;
+//        StringBuilder prefix = new StringBuilder();
+//        while (matcher.find()) {
+//            rawType = matcher.group(1);
+//            prefix.append("[");
+//        }
+//        return prefix.append(primitiveTypeStringDesc(rawType)).toString();
+//    }
+    private MethodSpec brewMethod_getPrimitiveArrayTypeStringDesc() {
+        return MethodSpec.methodBuilder("getPrimitiveArrayTypeStringDesc")
+                .addModifiers(Modifier.PRIVATE)
+                .returns(String.class)
+                .addParameter(ClassName.get(String.class), "type", Modifier.FINAL)
+                .addStatement("$T pattern = Pattern.compile(\"(\\\\S+)(\\\\[\\\\])\\\\2+\")", ClassName.get(Pattern.class))
+                .addStatement("$T matcher = pattern.matcher(type)", ClassName.get(Matcher.class))
+                .addStatement("String rawType = null")
+                .addStatement("$T prefix = new StringBuilder()", ClassName.get(StringBuilder.class))
+                .beginControlFlow("while (matcher.find())")
+                .addStatement("rawType = matcher.group(1)")
+                .addStatement("prefix.append(\"[\")")
+                .endControlFlow()
+                .addStatement("return prefix.append(primitiveTypeStringDesc(rawType)).toString()")
+                .build();
+    }
+
+    //    private boolean isPrimitiveArrayType(final String type) {
+//        return type.endsWith("[]")
+//                && (type.startsWith("booelan")
+//                || type.startsWith("byte")
+//                || type.startsWith("char")
+//                || type.startsWith("short")
+//                || type.startsWith("int")
+//                || type.startsWith("long")
+//                || type.startsWith("float")
+//                || type.startsWith("double"));
+//    }
+    private MethodSpec brewMethod_isPrimitiveArrayType() {
+        return MethodSpec.methodBuilder("isPrimitiveArrayType")
+                .addModifiers(Modifier.PRIVATE)
+                .returns(boolean.class)
+                .addParameter(ClassName.get(String.class), "type", Modifier.FINAL)
+                .addStatement("return type.endsWith(\"[]\")\n" +
+                        "                && (type.startsWith(\"booelan\")\n" +
+                        "                || type.startsWith(\"byte\")\n" +
+                        "                || type.startsWith(\"char\")\n" +
+                        "                || type.startsWith(\"short\")\n" +
+                        "                || type.startsWith(\"int\")\n" +
+                        "                || type.startsWith(\"long\")\n" +
+                        "                || type.startsWith(\"float\")\n" +
+                        "                || type.startsWith(\"double\"))")
+                .build();
+    }
+
+//    /  private Class<?> getNormalType(final String type) throws ClassNotFoundException {
+//        if (isPrimitiveArrayType(type)) {
+//            return Class.forName(getPrimitiveArrayTypeStringDesc(type));
+//        } else if (type.endsWith("[]")) {
+//            return Class.forName(getNormalTypeStringDesc(type));
+//        }
+//        return Class.forName(type);
+//    }
+    private MethodSpec brewMethod_getNormalType() {
+        TypeName wildcard = WildcardTypeName.subtypeOf(Object.class);
+        ClassName cls = ClassName.get(Class.class);
+        TypeName clsWildcard = ParameterizedTypeName.get(cls, wildcard);
+        return MethodSpec.methodBuilder("getNormalType")
+                .addModifiers(Modifier.PRIVATE)
+                .returns(clsWildcard)
+                .addParameter(ClassName.get(String.class), "type", Modifier.FINAL)
+                .addException(ClassName.get(ClassNotFoundException.class))
+                .beginControlFlow("if (isPrimitiveArrayType(type))")
+                .addStatement("return $T.forName(getPrimitiveArrayTypeStringDesc(type))",
+                        ClassName.get(Class.class))
+                .endControlFlow()
+                .beginControlFlow("else if (type.endsWith($S))","[]")
+                .addStatement("return Class.forName(getNormalTypeArrayStringDesc(type))")
+                .endControlFlow()
+                .addStatement("return Class.forName(type)")
+                .build();
     }
 
 //    private boolean isGenericType(final String type) {
@@ -268,7 +441,7 @@ public class MethodCollectionProcessor extends AbstractProcessor {
 //            } else if (isGenericType(methodBasic.paramsType[i])) {
 //                argsArray[i] = Class.forName(getRawType(methodBasic.paramsType[i]));
 //            } else {
-//                argsArray[i] = args[i].getClass();
+//                argsArray[i] = args == null ? getNormalType(methodBasic.paramsType[i]) : args[i].getClass();
 //            }
 //        }
 //        return argsArray;
@@ -295,7 +468,7 @@ public class MethodCollectionProcessor extends AbstractProcessor {
                         ClassName.get(Class.class))
                 .endControlFlow()
                 .beginControlFlow("else")
-                .addStatement("argsArray[i] = args[i].getClass()")
+                .addStatement("argsArray[i] = (args[i] == null ? getNormalType(methodBasic.paramsType[i]) : args[i].getClass())")
                 .endControlFlow()
                 .endControlFlow()
                 .addStatement("return argsArray")
@@ -470,12 +643,15 @@ public class MethodCollectionProcessor extends AbstractProcessor {
                 .build();
     }
 
-    //    private boolean isSameType(Object srcType, String destType) {
+
+    //    private boolean isSameType(Object srcType, @NonNull String destType) {
 //        if (isPrimitive(destType)) {
 //            if (checkPrimitive(srcType, destType)) {
 //                return true;
 //            }
 //        }
+//        if(srcType == null)
+//            return true;
 //        return checkSuperClassAndInterface(srcType,destType);
 //    }
     private MethodSpec brewMethod_isSameType() {
@@ -488,6 +664,9 @@ public class MethodCollectionProcessor extends AbstractProcessor {
                 .beginControlFlow("if (checkPrimitive(srcType, destType))")
                 .addStatement("return true")
                 .endControlFlow()
+                .endControlFlow()
+                .beginControlFlow("if(srcType == null)")
+                .addStatement("return true")
                 .endControlFlow()
                 .addStatement("return checkSuperClassAndInterface(srcType,destType)")
                 .build();

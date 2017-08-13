@@ -89,7 +89,7 @@ public final class Utils {
     }
 
 
-    static <T> T checkNotNull(T object, String message) {
+    public static <T> T checkNotNull(T object, String message) {
         if (object == null) {
             throw new NullPointerException(message);
         }

@@ -11,14 +11,6 @@ publish {
     uploadName = 'com.yn:threaddispatcher-threaddispatcherprocessor'
 }
 
-//def logger = new com.android.build.gradle.internal.LoggerWrapper(project.logger)
-//def sdkHandler = new com.android.build.gradle.internal.SdkHandler(project, logger)
-//for (File file : sdkHandler.sdkLoader.repositories) {
-//    repositories.maven {
-//        url = file.toURI()
-//    }
-//}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.google.auto.service:auto-service:1.0-rc3'

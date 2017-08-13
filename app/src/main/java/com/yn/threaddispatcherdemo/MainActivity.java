@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btnInterfaceUsage)
     public void onInterfaceMethodUsage() {
         startActivity(new Intent(this, InterfaceMethodUsageActivity.class));
+
     }
 
     @OnClick(R.id.btnAliasUsage)

@@ -109,6 +109,7 @@ public class Switcher {
     }
 
     public <T> Object run(final String alias, final T target, final Object... args) {
+        Utils.checkNotNull(target, "target must not be null");
         checkIndexConfigure();
         switch (mSpeedUp.mode(alias)) {
             case MAIN:
