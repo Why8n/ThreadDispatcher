@@ -138,7 +138,7 @@ MethodAliasUsageActivity extends AppCompatActivity {
 
     @Switch(alias = ALIAS_RUN_STATIC_PUBLIC)
     public static void staticPublicMethod(String[][] strstr, int[][] intint) {
-        Log.i("Whyn111", String.format("publicMethod:threadMode = %s, Thread.name = %s",
+        Log.i("Whyn111", String.format("publicStaticMethod:threadMode = %s, Thread.name = %s",
                 ThreadMode.BACKGROUND, Thread.currentThread().getName()));
         log(strstr);
         for (int i = 0; i < intint.length; ++i) {
@@ -150,6 +150,8 @@ MethodAliasUsageActivity extends AppCompatActivity {
 
     @Switch(alias = ALIAS_RUN_STATIC_PRIVATE)
     private static <T, V> void staticPrivateMethod(List<T> list, Map<String, V> maps) {
+        Log.i("Whyn111", String.format("privateStaticMethod:threadMode = %s, Thread.name = %s",
+                ThreadMode.BACKGROUND, Thread.currentThread().getName()));
         Log.i("Whyn111", "list:" + list.toArray());
         int i = 0;
         for (Map.Entry<String, V> entry : maps.entrySet()) {

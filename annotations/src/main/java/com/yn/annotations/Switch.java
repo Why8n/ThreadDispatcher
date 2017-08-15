@@ -18,3 +18,4 @@ public @interface Switch {
 
     String alias() default "";
 }
+

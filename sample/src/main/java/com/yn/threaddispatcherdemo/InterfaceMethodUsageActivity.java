@@ -47,7 +47,6 @@ public class InterfaceMethodUsageActivity extends AppCompatActivity implements I
                 onMainInMain();
             }
         }.start();
-
     }
 
     @OnClick(R.id.background_In_main)
