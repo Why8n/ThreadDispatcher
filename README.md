@@ -71,7 +71,7 @@ Download
 --------
 Via Gradle:
 ```groovy
-compile 'com.whyn:threaddispatcher:1.1.0'
+compile 'com.whyn:threaddispatcher:1.1.1'
 ```
 if it is Android porject,add:
 ```groovy
