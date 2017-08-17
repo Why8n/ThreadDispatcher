@@ -43,7 +43,7 @@ dependencies {
 //    compile project(':threaddispatcher')
 //    compile project(':threaddispatcherprocessor')
 //    compile project(':threaddispatcher4android')
-    compile 'com.whyn:threaddispatcher:1.1.0'
+    compile 'com.whyn:threaddispatcher:1.1.1'
     annotationProcessor 'com.whyn:threaddispatcherprocessor:1.1.1'
     compile 'com.whyn:threaddispatcher4android:1.0.0'
 }

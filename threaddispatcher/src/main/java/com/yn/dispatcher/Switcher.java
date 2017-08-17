@@ -21,6 +21,7 @@ import java.util.concurrent.Future;
 public class Switcher {
 
     private static Map<String, Object> sProxyCache = new ConcurrentHashMap<>();
+    private static final ExecutorService DEFAULT_EXECUTOR = Executors.newCachedThreadPool();
     private static Switcher sInstance;
     ExecutorService mBackgroundExecutor;
     ExecutorService mUiExecutor;
@@ -32,7 +33,7 @@ public class Switcher {
         mBackgroundDispatcher = new BackgroundDispatcher(this);
         mBackgroundExecutor = builder.backgroudnExecutor;
         if (mBackgroundExecutor == null)
-            mBackgroundExecutor = Executors.newCachedThreadPool();
+            mBackgroundExecutor = DEFAULT_EXECUTOR;
         mUiExecutor = builder.uiExecutor;
         mSpeedUp = builder.speedUp;
     }
