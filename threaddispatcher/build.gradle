@@ -5,7 +5,7 @@ publish {
     userOrg = rootProject.ext.userOrg
     groupId = rootProject.ext.groupId        //compile引用时的第1部分groupId
     artifactId = 'threaddispatcher'     //compile引用时的第2部分项目名
-    publishVersion = '1.1.1'   //compile引用时的第3部分版本号
+    publishVersion = rootProject.ext.threaddispatcher_version   //compile引用时的第3部分版本号
 //    publishVersion = rootProject.ext.publishVersion   //compile引用时的第3部分版本号
     desc = 'easy thread dispatch library for Java/Android'
     website = rootProject.ext.website
@@ -16,7 +16,7 @@ publish {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 //    compile project(':threaddispatcherprocessor')
-    compile 'com.whyn:annotations:1.0.0'
+    compile "com.whyn:annotations:${rootProject.ext.annotations_version}"
 }
 
 sourceCompatibility = "1.7"

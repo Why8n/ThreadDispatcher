@@ -27,7 +27,12 @@ task clean(type: Delete) {
 ext {
     userOrg = 'why8n'
     groupId = 'com.whyn'
-    publishVersion = '1.0.0'
+//    publishVersion = '1.0.0'
     website = 'https://github.com/Why8n/ThreadDispatcher'
     licences = ['Apache-2.0']
+
+    annotations_version = '1.0.0'
+    threaddispatcher4android_version = '1.0.0'
+    threaddispatcher_version = '1.1.1'
+    threaddispatcherprocessor_version = '1.1.1'
 }

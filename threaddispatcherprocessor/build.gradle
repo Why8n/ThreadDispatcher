@@ -5,7 +5,7 @@ publish {
     userOrg = rootProject.ext.userOrg      //bintray注册的用户名
     groupId = rootProject.ext.groupId         //compile引用时的第1部分groupId
     artifactId = 'threaddispatcherprocessor'     //compile引用时的第2部分项目名
-    publishVersion = '1.1.1'   //compile引用时的第3部分版本号
+    publishVersion = rootProject.ext.threaddispatcherprocessor_version   //compile引用时的第3部分版本号
     desc = 'annotation processor for ThreadDispatcher'
     website = rootProject.ext.website
     uploadName = 'com.yn:threaddispatcher-threaddispatcherprocessor'
@@ -16,7 +16,7 @@ dependencies {
     compile 'com.google.auto.service:auto-service:1.0-rc3'
     compile 'com.squareup:javapoet:1.8.0'
 //    compile project(':annotations')
-    compile 'com.whyn:annotations:1.0.0'
+    compile "com.whyn:annotations:${rootProject.ext.annotations_version}"
 }
 
 sourceCompatibility = "1.7"
