@@ -83,6 +83,7 @@ annotationProcessor 'com.whyn:threaddispatcherprocessor:1.1.1'
 
 #app build.gradle
 android {
+    defaultConfig{
     ···
     ···
         javaCompileOptions {
@@ -91,6 +92,7 @@ android {
             }
         }
     }
+}
 ```
 License
 -------
